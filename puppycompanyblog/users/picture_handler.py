@@ -9,7 +9,7 @@ def add_profile_pic (pic_upload , username):
     #"username.jpg"
     storage_filename = str(username)+'.'+ext_type
     #create special folder
-    filepath = os.path.join(current_app.root_path,'static\profile_pics',storage_filename)
+    filepath = os.path.join(current_app.root_path,'static/profile_pics',storage_filename)
     #specific size
     output_size = (200,200)
     #grab image uploaded
@@ -20,7 +20,6 @@ def add_profile_pic (pic_upload , username):
     pic.save(filepath)
 
     #return new name of profile picture 
-    # 'username'.'jpg'/'png'
 
     return storage_filename
 
