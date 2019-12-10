@@ -2,7 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField , PasswordField, SubmitField
 from wtforms.validators import DataRequired,Email, EqualTo
 from wtforms import ValidationError
-from flask_wtf.file import Filefield,FileAllowed
+from flask_wtf.file import FileField,FileAllowed
 
 from flask_login import current_user
 from puppycompanyblog.models import User
@@ -31,7 +31,7 @@ class RegistrationForm(FlaskForm):
 class UpdateUserForm(FlaskForm):
     email = StringField("Email",validators=[DataRequired(),Email()])
     username=StringField("Username",validators=[DataRequired()])
-    picture = Filefield("Update profile picture" , Validators=[FileAllowed(['jpg','png'])])
+    picture = FileField("Update profile picture" , Validators=[FileAllowed(['jpg','png'])])
     submit = SubmitField("Update")
 
     #validate for email 
