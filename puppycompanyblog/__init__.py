@@ -14,6 +14,9 @@ from flask_login import LoginManager
 
 app = Flask(__name__)
 
+#set secret key 
+app.config['SECRET_KEY'] ='mysecret'
+
 ######################
 ######Database set up#########
 basedir = os.path.abspath(os.path.dirname(__file__))
