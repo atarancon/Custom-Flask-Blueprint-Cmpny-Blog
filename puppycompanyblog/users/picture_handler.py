@@ -3,6 +3,7 @@ from PIL import Image
 from flask import url_for,current_app
 
 def add_profile_pic (pic_upload , username):
+    print("made it")
     filename = pic_upload.filename
     ext_type = filename.split('.')[-1]
     #using username in name of file t store
@@ -10,6 +11,8 @@ def add_profile_pic (pic_upload , username):
     storage_filename = str(username)+'.'+ext_type
     #create special folder
     filepath = os.path.join(current_app.root_path,'static/profile_pics',storage_filename)
+    print("helllo") 
+    print(filepath)
     #specific size
     output_size = (200,200)
     #grab image uploaded
