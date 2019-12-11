@@ -15,6 +15,7 @@ data.sqlite
 *.so
 *.vscode/
 *.DS_Store
+*.pyc
 
 
 #Packages #
