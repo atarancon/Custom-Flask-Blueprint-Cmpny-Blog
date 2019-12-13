@@ -9,7 +9,7 @@ from puppycompanyblog.models import User
 
 class LoginForm(FlaskForm):
     email = StringField('Email',validators=[DataRequired(),Email()])
-    password = StringField('Password',validators=[DataRequired()])
+    password = PasswordField('Password',validators=[DataRequired()])
     submit = SubmitField('Log In')
 
 class RegistrationForm(FlaskForm):
@@ -35,11 +35,11 @@ class UpdateUserForm(FlaskForm):
     submit = SubmitField("Update")
 
     #validate for email 
-    def check_email(self,field):
+    def validate_email(self,field):
         if User.query.filter_by(email = field.data).first():
             raise ValidationError("Your Email has been already register")
 
-    def check_username(self,field):
+    def validate_username(self,field):
          if User.query.filter_by(username = field.data).first():
             raise ValidationError("Your username has been already register")
      

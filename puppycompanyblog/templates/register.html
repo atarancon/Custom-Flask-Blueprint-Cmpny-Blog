@@ -8,8 +8,16 @@
 
     {{form.email.label}}{{form.email}}<br>
     {{form.username.label}}{{form.username}}<br>
-    {{form.password.label}}{{form.password}}<br>
-    {{form.pass_conf.label}}{{form.pass_conf}}<br>
+    {{form.password.label}}{{form.password}}
+    {% for error in form.password.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    <br>
+    {{form.pass_conf.label}}{{form.pass_conf}}
+    {% for error in form.pass_conf.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    <br>
     {{form.submit()}}
 
 

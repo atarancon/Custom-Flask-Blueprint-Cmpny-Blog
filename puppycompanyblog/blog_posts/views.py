@@ -9,17 +9,17 @@ blog_posts = Blueprint('blog_posts',__name__)
 
 
 #create 
-@blog_posts.route('/create',method=["GET","POST"])
+@blog_posts.route('/create',methods=["GET","POST"])
 @login_required
 def create_post():
     form = BlogPostForm()
 
     if form.validate_on_submit():
-        blog_posts = BlogPost(title=form.title.data,
+        blog_post = BlogPost(title=form.title.data,
                                 text=form.text.data, 
                                 user_id = current_user.id
                                 ) 
-        db.session.add(blog_posts)
+        db.session.add(blog_post)
         db.session.commit()
         flash("Blog Post Created")
         return redirect(url_for('core.index'))
@@ -31,8 +31,8 @@ def create_post():
 
 #Read single blogpost 
 @blog_posts.route('/<int:blog_post_id>')
-def blog_post(blog_posts_id):
-    blog_post = BlogPost.query.get_or_404(blog_posts_id)
+def blog_post(blog_post_id):
+    blog_post = BlogPost.query.get_or_404(blog_post_id)
     return render_template('blog_post.html',title=blog_post.title,date = blog_post.date,post = blog_post)
 
 
@@ -40,7 +40,7 @@ def blog_post(blog_posts_id):
 #delete  single blogpost
 #button that execute 
 # no html layout or template 
-@blog_post.route('/<int:blog_post_id>/delete',method=["GET","POST"])
+@blog_posts.route('/<int:blog_post_id>/delete',methods=["GET","POST"])
 @login_required
 def delete (blog_post_id):
     blog_post = BlogPost.query.get_or_404(blog_post_id)
@@ -55,7 +55,7 @@ def delete (blog_post_id):
 
 
 #update 
-@blog_posts.route('/<int:blog_post_id>/update',method=["GET","POST"])
+@blog_posts.route('/<int:blog_post_id>/update',methods=["GET","POST"])
 @login_required
 def update(blog_post_id):
 
@@ -67,11 +67,11 @@ def update(blog_post_id):
     
     if form.validate_on_submit():
         blog_post.title = form.title.data
-        blog_post.text=form.text.data, 
+        blog_post.text=form.text.data 
         db.session.commit()
         print("Blog Post Updated")
         flash("Blog Post Updated ")
-        return redirect(url_for('blog_posts.blog_post,blog_post_id = blog_post.id'))
+        return redirect(url_for('blog_posts.blog_post' ,blog_post_id = blog_post.id))
     
     elif request.method == "GET":
         form.title.data = blog_post.title

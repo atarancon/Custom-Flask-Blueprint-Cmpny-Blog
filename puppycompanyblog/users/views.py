@@ -53,14 +53,14 @@ def login():
 @users.route("/logout")
 def logout():
     logout_user()
-    return render_template(url_for("core.index"))
+    return redirect(url_for("core.index"))
 #account (update UserfForm)
 @users.route("/account",methods=["GET","POST"])
 def account():
     form = UpdateUserForm()
     
     if form.validate_on_submit():
-        print("post request")
+        print("post request and valid submit")
         
         if form.picture.data is not None:
             print("picture")
@@ -86,8 +86,8 @@ def account():
         profile_image = url_for('static',filename='profile_pics/'+current_user.profile_image)
 
 
-    
-    
+    print("Post request and invalid submit") 
+    profile_image = url_for('static',filename='profile_pics/'+current_user.profile_image)
     return render_template("account.html" , profile_image = profile_image , form = form)
 
 
