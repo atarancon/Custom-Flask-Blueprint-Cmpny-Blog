@@ -15,7 +15,7 @@ from flask_login import LoginManager
 app = Flask(__name__)
 
 #set secret key 
-app.config['SECRET_KEY'] ='mysecret'
+app.config['SECRET_KEY'] = os.urandom(16)
 
 ######################
 ######Database set up#########
